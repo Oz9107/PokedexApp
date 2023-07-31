@@ -1,0 +1,150 @@
+/* styles/PokedexPage.css */
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+.container_pokemon {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  gap: 10px;
+  align-content: center;
+  align-items: center;
+  justify-content: start;
+  justify-items: start;
+}
+.pokecard {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 0.7em;
+  border: 0.7em solid #ccc;
+  cursor: pointer;
+  transition: transform 150ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokecard:hover {
+  transform: scale(1.03);
+}
+
+.pokecard_header {
+  background-color: #999;
+  aspect-ratio: 2;
+  position: relative;
+}
+
+.pokecard_image {
+  position: absolute;
+  width: 60%;
+  left: 50%;
+  transform: translate(-50%);
+  -webkit-transform: translate(-50%);
+  -moz-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  -o-transform: translate(-50%);
+  top: 1.5em;
+}
+
+.pokecard_body {
+  padding: 3.5em 1em 2em;
+}
+
+.pokecard_name {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.2em;
+}
+
+.pokecard_types {
+  display: flex;
+  justify-content: center;
+  gap: 0.7em;
+  margin-bottom: 1em;
+}
+
+.pokecard_typename {
+  text-transform: capitalize;
+}
+
+.pokecard_typename:nth-child(2)::before {
+  content: "/";
+  padding-right: 0.7em;
+}
+
+.pokecard_hr {
+  margin-bottom: 1em;
+  border: 1px solid #ccc4;
+}
+
+.pokecard_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  gap: 1.5em 0.2em;
+}
+
+.pokecard_stat_name {
+  font-size: 0.7rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.pokecard_stat {
+  display: grid;
+  gap: 0.5em;
+  justify-items: center;
+}
+
+.pokecard_stat_value {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.fire-gradient {
+  background: linear-gradient(
+    176.37deg,
+    #f96d6f -32.26%,
+    #e35825 22.55%,
+    #e8ae1b 125.72%
+  );
+}
+
+.grass-gradient {
+  background: linear-gradient(
+    178.92deg,
+    #7ec6c5 0.92%,
+    #abdac6 47.96%,
+    #cae099 99.08%
+  );
+}
+
+.water-gradient {
+  background: linear-gradient(
+    179.57deg,
+    #133258 -70.14%,
+    #1479fb 56.16%,
+    #82b2f1 214.85%
+  );
+}
+
+.bug-gradient {
+  background: linear-gradient(
+    177.56deg,
+    #62db60 -58.92%,
+    #3bb039 16.57%,
+    #aaffa8 209.53%
+  );
+}
+
+.fire-border {
+  border-color: #ce5f1a;
+}
+
+.fire-color {
+  color: #ce5f1a;
+}

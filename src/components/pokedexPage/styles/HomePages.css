@@ -18,7 +18,7 @@
   align-items: center;
   gap: 60px;
   flex-direction: column;
-  margin-bottom: 150px;
+  margin-bottom: 70px;
 }
 .container_text {
   text-align: center;
@@ -54,8 +54,6 @@
   padding: 0 10px;
 }
 .container_bar {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    bottom: 0;
+  width: 100%;
+  top: 0%;
 }

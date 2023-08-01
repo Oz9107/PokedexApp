@@ -9,6 +9,7 @@ html {
 
 body {
   margin: 0;
+  background-color: #ebeef2;
 }
 
 h1,
@@ -47,4 +48,15 @@ button {
   font-family: inherit;
 
   border: none;
+}
+.PokeSelect {
+  height: 100%;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 0 10px;
+  border: none;
+  outline: none;
+  color: #0f0f2d;
+  box-shadow: #00000026 1.95px 1.95px 2.6px;
+  background: rgba(255, 255, 255, 1);
 }

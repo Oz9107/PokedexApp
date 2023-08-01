@@ -1,0 +1,60 @@
+#head {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url("/public/img/pokemonP.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* con estos background ocupamos con la imagen toda la pantalla y no se repite */
+}
+.StylePokemon {
+  display: inline-block;
+  width: auto;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  overflow: hidden;
+  background-color: none;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  transition: all 400 ms ease;
+  -webkit-transition: all 400 ms ease;
+  -moz-transition: all 400 ms ease;
+  -ms-transition: all 400 ms ease;
+  -o-transition: all 400 ms ease;
+  max-width: 300px;
+}
+.StylePokemon:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 4);
+}
+.StylePokemon h2 {
+  text-align: center;
+  font-family: Comic Sans MS;
+  font-weight: bold;
+  font-size: 25px;
+  color: #dfcbcb;
+  text-shadow: -1px 0 #414d68, 0 1px #414d68, 1px 0 #414d68, 0 -1px #414d68,
+    -2px 2px 0 #414d68, 2px 2px 0 #414d68, 1px 1px #414d68, 2px 2px #414d68,
+    3px 3px #414d68, 4px 4px #414d68, 5px 5px #414d68;
+  margin: 10px;
+}
+.StylePokemon p {
+  margin: 5px;
+  color: #30384b;
+  text-align: center;
+}
+.StylePokemon_text {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  margin: 10px;
+  background-color: #eceaf2;
+  padding: 10px;
+  border: 1px solid #3f2062;
+  border-radius: 6px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+}

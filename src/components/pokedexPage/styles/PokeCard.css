@@ -1,11 +1,5 @@
 /* styles/PokedexPage.css */
-#root {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f0f0f0;
-}
+
 .container_pokemon {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
@@ -140,7 +134,73 @@
     #aaffa8 209.53%
   );
 }
-
+.poison-gradient {
+  background: linear-gradient(
+    179deg,
+    #5b3184 0%,
+    #a564e3 32.66%,
+    #ce9bff 57.91%
+  );
+}
+.ghost-gradient {
+  background: linear-gradient(
+    179deg,
+    #323569 0%,
+    #454aa8 27.25%,
+    #787dda 57.91%
+  );
+}
+.fighting-gradient {
+  background: linear-gradient(179deg, #96402a 0%, #f1613c 70.83%, #cb735d 100%);
+}
+.flying-gradient {
+  background: linear-gradient(
+    181deg,
+    #735259 24.28%,
+    #bc6b7c 74.77%,
+    #7c3f4c 100%
+  );
+}
+.rock-gradient {
+  background: linear-gradient(
+    179deg,
+    #2c2424 0%,
+    #8d8d94 27.25%,
+    #d3d3d3 57.91%
+  );
+}
+.dragon-gradient {
+  background: linear-gradient(
+    180deg,
+    #478a93 0%,
+    #56a4ae 23.44%,
+    #a2bec1 58.33%
+  );
+}
+.psychic-gradient {
+  background: linear-gradient(
+    180deg,
+    #971b45 0%,
+    #c23867 23.44%,
+    #cd7d98 58.33%
+  );
+}
+.ice-gradient {
+  background: linear-gradient(
+    179deg,
+    #6fbedf 0%,
+    #64cbf5 23.44%,
+    #bdebfe 58.33%
+  );
+}
+.dark-gradient {
+  background: linear-gradient(
+    179deg,
+    #0d2b37 0%,
+    #184658 23.44%,
+    #183947 58.33%
+  );
+}
 .fire-border {
   border-color: #ce5f1a;
 }

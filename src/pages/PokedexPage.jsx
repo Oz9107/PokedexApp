@@ -5,19 +5,26 @@ import { useEffect, useRef } from "react";
 import PokeCard from "../components/pokedexPage/PokeCard";
 import { useState } from "react";
 import "../components/pokedexPage/styles/PokedexPage.css";
+import SelectType from "../components/pokedexPage/SelectType";
 
 const PokedexPage = () => {
   const [inputValue, setInputValue] = useState("");
 
+  const [selectValue, setSelectValue] = useState("allPokemons");
+
   const trainer = useSelector((reducer) => reducer.trainer);
 
-  const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20";
+  const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40";
 
-  const [pokemons, getAllPokemons] = useFetch(url);
+  const [pokemons, getAllPokemons, getPokemonsByType] = useFetch(url);
 
   useEffect(() => {
-    getAllPokemons();
-  }, []);
+    if (selectValue === "allPokemons") {
+      getAllPokemons();
+    } else {
+      getPokemonsByType(selectValue);
+    }
+  }, [selectValue]);
 
   const inputSearch = useRef();
 
@@ -43,15 +50,15 @@ const PokedexPage = () => {
       <div className="grid_search">
         <form className="container_search_pokemon" onSubmit={handleSubmit}>
           <input
-            required
             placeholder="look for a pokemon"
             ref={inputSearch}
             type="text"
           />
           <button className="btn_pokemon">Search</button>
         </form>
+        <SelectType setSelectValue={setSelectValue} />
       </div>
-      <div>
+      <div className="target">
         {pokemons?.results.filter(cbFilter).map((poke) => (
           <PokeCard key={poke.url} url={poke.url} />
         ))}

@@ -50,4 +50,10 @@
   padding: 0 10px;
   height: 100%;
 }
-
+.target {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}

@@ -1,3 +1,4 @@
+/* Base styles that apply to all devices */
 .container {
   width: 100%;
   height: 100vh;
@@ -8,6 +9,7 @@
   position: relative;
   flex-direction: column;
 }
+
 .container_info {
   max-width: 1000px;
   width: 100%;
@@ -20,22 +22,27 @@
   flex-direction: column;
   margin-bottom: 70px;
 }
+
 .container_text {
   text-align: center;
 }
+
 .title {
   color: #fe1936;
   font-size: 3rem;
 }
+
 .container_text h2 {
   font-weight: 500;
 }
+
 .container_input_name {
   max-width: 600px;
   width: 100%;
   display: flex;
   box-shadow: #00000026 1.95px 1.95px 2.6px;
 }
+
 .container_input_name input {
   width: 100%;
   border: none;
@@ -44,6 +51,7 @@
   padding: 13px;
   font-size: 1.2rem;
 }
+
 .btn_name {
   background: rgba(217, 63, 63, 1);
   color: #fff;
@@ -53,7 +61,41 @@
   max-width: 120px;
   padding: 0 10px;
 }
+
 .container_bar {
   width: 100%;
   top: 0%;
+}
+
+/* Media queries for different screen sizes */
+
+/* For tablets and smaller devices (e.g., iPad) */
+@media only screen and (max-width: 768px) {
+  .container_info {
+    gap: 30px;
+  }
+}
+
+/* For mobile devices (e.g., smartphones) */
+@media only screen and (max-width: 480px) {
+  .container_info {
+    padding: 10px;
+  }
+
+  .container_input_name {
+    flex-direction: column;
+  }
+
+  .btn_name {
+    max-width: 100%;
+    margin-top: 10px;
+  }
+  .container_text {
+    max-width: 50%;
+    font-size: 10px;
+  }
+  .title {
+    max-width: 150%;
+    font-size: 40px;
+  }
 }

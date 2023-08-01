@@ -1,20 +1,24 @@
-//PokedexPage.jsx
 import { useSelector } from "react-redux";
 import useFetch from "../hooks/useFetch";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import PokeCard from "../components/pokedexPage/PokeCard";
-import { useState } from "react";
+import { debounce } from "lodash";
 import "../components/pokedexPage/styles/PokedexPage.css";
 import SelectType from "../components/pokedexPage/SelectType";
 
 const PokedexPage = () => {
   const [inputValue, setInputValue] = useState("");
-
   const [selectValue, setSelectValue] = useState("allPokemons");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const trainer = useSelector((reducer) => reducer.trainer);
 
-  const url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=40";
+  const itemsPerPage = 20;
+
+  const url = `https://pokeapi.co/api/v2/pokemon?offset=${
+    (currentPage - 1) * itemsPerPage
+  }&limit=${itemsPerPage}`;
 
   const [pokemons, getAllPokemons, getPokemonsByType] = useFetch(url);
 
@@ -24,13 +28,48 @@ const PokedexPage = () => {
     } else {
       getPokemonsByType(selectValue);
     }
-  }, [selectValue]);
+  }, [selectValue, currentPage]);
+
+  useEffect(() => {
+    setTotalPages(Math.ceil(pokemons?.count / itemsPerPage));
+  }, [pokemons]);
 
   const inputSearch = useRef();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSearch = debounce(() => {
     setInputValue(inputSearch.current.value.trim().toLowerCase());
+    setCurrentPage(1);
+  }, 300);
+
+  const handleSearchButtonClick = (e) => {
+    e.preventDefault(); // Prevenir el envío del formulario
+    setInputValue(inputSearch.current.value.trim().toLowerCase());
+    setCurrentPage(1);
+  };
+
+  const handlePaginationChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const getPageRange = () => {
+    const totalPagesToShow = 5;
+    const totalPageGroups = Math.ceil(totalPages / totalPagesToShow);
+    const currentPageGroup = Math.ceil(currentPage / totalPagesToShow);
+
+    const startPage = (currentPageGroup - 1) * totalPagesToShow + 1;
+    const endPage = Math.min(startPage + totalPagesToShow - 1, totalPages);
+
+    return { startPage, endPage, totalPageGroups };
+  };
+
+  const { startPage, endPage } = getPageRange();
+
+  const handleNextGroup = () => {
+    setCurrentPage((prevPage) => Math.min(prevPage + 5, totalPages));
+  };
+
+  const handlePrevGroup = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 5, 1));
   };
 
   const cbFilter = (poke) => poke.name.includes(inputValue);
@@ -48,20 +87,62 @@ const PokedexPage = () => {
         </h3>
       </div>
       <div className="grid_search">
-        <form className="container_search_pokemon" onSubmit={handleSubmit}>
+        <form
+          className="container_search_pokemon"
+          onSubmit={handleSearchButtonClick}
+        >
           <input
             placeholder="look for a pokemon"
             ref={inputSearch}
             type="text"
+            onChange={handleSearch}
           />
-          <button className="btn_pokemon">Search</button>
+          <button type="submit" className="btn_pokemon">
+            Search
+          </button>
         </form>
         <SelectType setSelectValue={setSelectValue} />
       </div>
+
       <div className="target">
         {pokemons?.results.filter(cbFilter).map((poke) => (
           <PokeCard key={poke.url} url={poke.url} />
         ))}
+      </div>
+
+      <div className="pagination">
+        {currentPage > 1 && (
+          <button
+            className="pagination-button"
+            onClick={() => handlePrevGroup()}
+          >
+            {"<"}
+          </button>
+        )}
+
+        {Array.from({ length: endPage - startPage + 1 }, (_, index) => {
+          const pageNumber = startPage + index;
+          return (
+            <button
+              className={`pagination-button ${
+                pageNumber === currentPage ? "active" : ""
+              }`}
+              key={pageNumber}
+              onClick={() => handlePaginationChange(pageNumber)}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+
+        {currentPage < totalPages && (
+          <button
+            className="pagination-button"
+            onClick={() => handleNextGroup()}
+          >
+            {"+"}
+          </button>
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useEffect } from "react";
 import "../components/pokedexPage/styles/PokeIdPages.css";
+import { Link } from "react-router-dom";
 
 const PokeIdPages = () => {
   const { id } = useParams();
@@ -24,7 +25,9 @@ const PokeIdPages = () => {
       <div>
         <img src="/img/barTopPokedex.svg" alt="img" />
         <div className="container_title">
-          <img src="/img/pokedex.svg" alt=""></img>
+          <Link to="/pokedex">
+            <img src="/img/pokedex.svg" alt=""></img>
+          </Link>
         </div>
       </div>
       <article id="head">

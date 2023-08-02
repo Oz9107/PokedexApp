@@ -5,6 +5,7 @@ import PokeCard from "../components/pokedexPage/PokeCard";
 import { debounce } from "lodash";
 import "../components/pokedexPage/styles/PokedexPage.css";
 import SelectType from "../components/pokedexPage/SelectType";
+import { Link } from "react-router-dom";
 
 const PokedexPage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -75,10 +76,13 @@ const PokedexPage = () => {
   const cbFilter = (poke) => poke.name.includes(inputValue);
 
   return (
-    <div className="header">
+    <article className="header">
       <img src="/img/barTopPokedex.svg" alt="img" />
       <div className="container_title">
-        <img src="/img/pokedex.svg" alt=""></img>
+        {/* Link es un componente y debe ser importado */}
+        <Link to="/">
+          <img src="/img/pokedex.svg" alt="title"></img>
+        </Link>
       </div>
       <div className="container_pokedex">
         <h3>
@@ -144,7 +148,7 @@ const PokedexPage = () => {
           </button>
         )}
       </div>
-    </div>
+    </article>
   );
 };
 
